@@ -88,7 +88,40 @@
 }
 
 - (void) tappedSave:(UIButton *) sender {
-    NSLog(@"tapped Save");
+    if (self.titleText.text.length > 0 && self.contentText.text.length > 0) {
+        NSLog(@"tapped Save");
+        [self saveNote];
+    } else {
+        [self noDataToSave];
+    }
+}
+
+-(void)saveNote {
+    
+}
+-(void)noDataToSave {
+    NSString *wheresTheProblem;
+    
+    if (self.titleText.text.length == 0 && self.contentText.text.length == 0) {
+        wheresTheProblem = @"title and note text fields";
+    } else if (self.titleText.text.length == 0) {
+        wheresTheProblem = @"title text field";
+    } else {
+        wheresTheProblem = @"note text field";
+    }
+    NSString *theProblem = [NSString stringWithFormat:@"There needs to be text in the %@ to be able to save.",wheresTheProblem];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Save problem"
+                                                                   message:theProblem
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (self.titleText.text.length == 0) {
+            [self.titleText becomeFirstResponder];
+        } else {
+            [self.contentText becomeFirstResponder];
+        }
+    }];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate
