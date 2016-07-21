@@ -34,9 +34,15 @@
     titleLabel.text = @"Title:";
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [saveButton setTitleColor:[UIColor colorWithRed:1.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [saveButton setTitleColor:[UIColor colorWithRed:1.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:0.5] forState:UIControlStateHighlighted];
+    [saveButton addTarget:self action:@selector(tappedSave:) forControlEvents:UIControlEventTouchUpInside];
+    
     saveButton.titleLabel.textAlignment = NSTextAlignmentLeft;
     titleText.layer.borderWidth = 1.0f;
+    titleText.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] CGColor];
+    contentText.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] CGColor];
+    contentText.layer.cornerRadius = 5.0f;
     contentText.layer.borderWidth = 0.5f;
     self.titleText.delegate = self;
     
@@ -75,9 +81,14 @@
     [titleText sizeToFit];
     [saveButton sizeToFit];
     [contentText sizeToFit];
-    
-    
-    
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+- (void) tappedSave:(UIButton *) sender {
+    NSLog(@"tapped Save");
 }
 
 #pragma mark - UITextFieldDelegate
