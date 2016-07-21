@@ -64,13 +64,12 @@
         make.top.equalTo(titleLabel.mas_top);
         make.height.equalTo(titleLabel.mas_height);
         make.trailing.equalTo(self.view.mas_trailing).offset(-spaceH);
-        make.width.equalTo(titleLabel.mas_width);
     }];
     [titleText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(titleLabel.mas_centerY);
         make.leading.equalTo(titleLabel.mas_trailing).offset(spaceH);
         make.trailing.equalTo(saveButton.mas_leading).offset(-spaceH);
-        make.width.greaterThanOrEqualTo(titleLabel.mas_width).offset(1);
+        make.width.greaterThanOrEqualTo(@10);
     }];
     [contentText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleText.mas_bottom).offset(spaceV);
