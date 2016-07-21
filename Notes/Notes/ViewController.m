@@ -102,4 +102,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark: NSNotifications
+-(void)viewDidAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)keyboardWasShown:(NSNotification*)notification {
+    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    [self.contentText mas_updateConstraints:^(MASConstraintMaker *make) {
+       make.bottom.equalTo(self.view.mas_bottom).offset(-30 - keyboardHeight);
+    }];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)notification {
+    [self.contentText mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottom).offset(-30);
+    }];
+}
+
+
 @end
