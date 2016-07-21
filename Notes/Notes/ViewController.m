@@ -38,6 +38,7 @@
     saveButton.titleLabel.textAlignment = NSTextAlignmentLeft;
     titleText.layer.borderWidth = 1.0f;
     contentText.layer.borderWidth = 0.5f;
+    self.titleText.delegate = self;
     
     [self.view addSubview:titleLabel];
     [self.view addSubview:titleText];
@@ -75,9 +76,14 @@
     [saveButton sizeToFit];
     [contentText sizeToFit];
     
-    NSLog(@"title of buttion is %@", saveButton.titleLabel.text);
     
     
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return [self.contentText becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
