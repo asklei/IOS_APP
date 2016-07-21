@@ -169,7 +169,13 @@
 -(void)saveNote {
     Note *note = [[Note alloc] initWithTitle:self.titleText.text detail:self.contentText.text];
     [[Model sharedModel] saveNote:note];
-    NSLog(@"tapped Save");
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Save data"
+                                                                   message:@"Data correctly saved"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
