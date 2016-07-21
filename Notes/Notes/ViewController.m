@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "Masonry.h"
+#import "Note.h"
+#import "Model.h"
 
 @interface ViewController ()
 @property(nonatomic, weak) UILabel *titleLabel;
@@ -81,6 +83,11 @@
     [titleText sizeToFit];
     [saveButton sizeToFit];
     [contentText sizeToFit];
+    
+    Note *note = [[Model sharedModel] loadNote];
+    self.titleText.text = note.title;
+    self.contentText.text = note.detail;
+    
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -89,16 +96,12 @@
 
 - (void) tappedSave:(UIButton *) sender {
     if (self.titleText.text.length > 0 && self.contentText.text.length > 0) {
-        NSLog(@"tapped Save");
         [self saveNote];
     } else {
         [self noDataToSave];
     }
 }
 
--(void)saveNote {
-    
-}
 -(void)noDataToSave {
     NSString *wheresTheProblem;
     
@@ -161,6 +164,12 @@
     [self.contentText mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view.mas_bottom).offset(-30);
     }];
+}
+
+-(void)saveNote {
+    Note *note = [[Note alloc] initWithTitle:self.titleText.text detail:self.contentText.text];
+    [[Model sharedModel] saveNote:note];
+    NSLog(@"tapped Save");
 }
 
 
