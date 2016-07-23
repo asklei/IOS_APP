@@ -7,6 +7,7 @@
 //
 
 #import "Model.h"
+#import "Notes.h"
 #import "Note.h"
 
 @implementation Model
@@ -20,23 +21,23 @@
     return modelSingleton;
 }
 
--(void)saveNote:(Note *)note {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:note.title forKey:@"title"];
-    [defaults setObject:note.detail forKey:@"detail"];
-    [defaults synchronize];
-}
--(Note *)loadNote {
-    //note should be saved here
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *title = [defaults stringForKey:@"title"];
-    NSString *detail = [defaults stringForKey:@"detail"];
-    Note *note;
-    if (title && detail) {
-        note = [[Note alloc] initWithTitle:title detail:detail];
-    } else {
-        note = [[Note alloc] initWithTitle:@"" detail:@""];
-    }
-    return note;
-}
+//-(void)saveNote:(Note *)note {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setObject:note.title forKey:@"title"];
+//    [defaults setObject:note.detail forKey:@"detail"];
+//    [defaults synchronize];
+//}
+//-(Note *)loadNote {
+//    //note should be saved here
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *title = [defaults stringForKey:@"title"];
+//    NSString *detail = [defaults stringForKey:@"detail"];
+//    Note *note;
+//    if (title && detail) {
+//        note = [[Note alloc] initWithTitle:title detail:detail];
+//    } else {
+//        note = [[Note alloc] initWithTitle:@"" detail:@""];
+//    }
+//    return note;
+//}
 @end

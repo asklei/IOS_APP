@@ -83,9 +83,9 @@
     [saveButton sizeToFit];
     [contentText sizeToFit];
     
-    Note *note = [[Model sharedModel] loadNote];
-    self.titleText.text = note.title;
-    self.contentText.text = note.detail;
+//    Note *note = [[Model sharedModel] loadNote];
+//    self.titleText.text = note.title;
+//    self.contentText.text = note.detail;
     
 }
 
@@ -166,15 +166,15 @@
 }
 
 -(void)saveNote {
-    Note *note = [[Note alloc] initWithTitle:self.titleText.text detail:self.contentText.text];
-    [[Model sharedModel] saveNote:note];
-    
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Save data"
-                                                                   message:@"Data correctly saved"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+//    Note *note = [[Note alloc] initWithTitle:self.titleText.text detail:self.contentText.text];
+//    [[Model sharedModel] saveNote:note];
+//    
+//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Save data"
+//                                                                   message:@"Data correctly saved"
+//                                                            preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+//    [alert addAction:defaultAction];
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
