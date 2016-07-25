@@ -20,8 +20,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //ViewController *viewController = [[ViewController alloc] init];
-    NotesTableViewController *viewController = [[NotesTableViewController alloc] init];
-    self.window.rootViewController = viewController;
+    NotesTableViewController *notesTableViewController = [[NotesTableViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:notesTableViewController];
+    
+    self.window.rootViewController = navigationController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

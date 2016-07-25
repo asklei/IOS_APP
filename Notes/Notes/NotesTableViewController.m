@@ -11,6 +11,7 @@
 #import "Model.h"
 #import "Note.h"
 #import "NoteTableViewCell.h"
+#import "ViewController.h"
 
 @interface NotesTableViewController ()
 @property(nonatomic, weak) Notes *notes;
@@ -36,6 +37,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -56,6 +62,13 @@
     cell.detailTextLabel.text = note.detail;
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Note *note = [self.notes getNoteAtIndex:indexPath.row];
+    ViewController *detailViewController = [[ViewController alloc] initWithNote:note];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 

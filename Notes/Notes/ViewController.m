@@ -16,12 +16,17 @@
 @property(nonatomic, weak) UITextField *titleText;
 @property(nonatomic, weak) UITextView *contentText;
 @property(nonatomic, weak) UIButton *saveButton;
+@property(nonatomic, weak) Note *note;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"Edit note";
     
     UILabel *titleLabel = [UILabel new];
     UITextField *titleText = [UITextField new];
@@ -83,10 +88,20 @@
     [saveButton sizeToFit];
     [contentText sizeToFit];
     
-//    Note *note = [[Model sharedModel] loadNote];
-//    self.titleText.text = note.title;
-//    self.contentText.text = note.detail;
+    if (self.note) {
+        self.titleText.text = self.note.title;
+        self.contentText.text = self.note.detail;
+    }
     
+}
+
+- (id) initWithNote:(Note *)note {
+    self = [super init];
+    if (!self) {
+        return nil; //something went wrong!
+    }
+    self.note = note;
+    return self;
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -166,15 +181,9 @@
 }
 
 -(void)saveNote {
-//    Note *note = [[Note alloc] initWithTitle:self.titleText.text detail:self.contentText.text];
-//    [[Model sharedModel] saveNote:note];
-//    
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Save data"
-//                                                                   message:@"Data correctly saved"
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-//    [alert addAction:defaultAction];
-//    [self presentViewController:alert animated:YES completion:nil];
+    self.note.title = self.titleText.text;
+    self.note.detail = self.contentText.text;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
