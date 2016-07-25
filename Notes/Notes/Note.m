@@ -18,4 +18,9 @@
     self.detail = detail;
     return self;
 }
+
+//returns if note is blank
+-(BOOL)isBlank {
+    return !(self.title && self.title.length>0 && self.detail && self.detail.length>0);
+}
 @end

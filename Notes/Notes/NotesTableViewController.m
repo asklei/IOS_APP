@@ -15,6 +15,7 @@
 
 @interface NotesTableViewController ()
 @property(nonatomic, weak) Notes *notes;
+@property (strong, nonatomic) Note *noteToAdd;
 @end
 
 @implementation NotesTableViewController
@@ -24,6 +25,8 @@
     
     self.notes = [[Model sharedModel] notes];
     [self.tableView registerClass:[NoteTableViewCell class] forCellReuseIdentifier:@"note"];
+    self.navigationItem.rightBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNote:)];
+    self.title = @"Notes";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -39,6 +42,10 @@
 
 - (void)viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
+    if (self.noteToAdd && ![self.noteToAdd isBlank]) {
+        [[Model sharedModel].notes addNote:self.noteToAdd];
+    }
+    self.noteToAdd = nil;
     [self.tableView reloadData];
 }
 
@@ -68,6 +75,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Note *note = [self.notes getNoteAtIndex:indexPath.row];
     ViewController *detailViewController = [[ViewController alloc] initWithNote:note];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+-(void)addNote:(id)sender {
+    self.noteToAdd = [[Note alloc] initWithTitle:@"" detail:@""];
+    ViewController *detailViewController = [[ViewController alloc] initWithNote:self.noteToAdd];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
