@@ -10,7 +10,7 @@
 @class Notes;
 
 @interface Model : NSObject
-@property(nonatomic) Notes *notes;
+@property(nonatomic, copy) Notes *notes;
 + (Model *)sharedModel;
 //-(void)saveNote:(Note *)note;
 //-(Note *)loadNote;

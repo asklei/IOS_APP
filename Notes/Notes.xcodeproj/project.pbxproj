@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3985B3224C4452D6B2304E3E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10AF08B7BC7FDC0597243314 /* libPods.a */; };
+		61913D6C1D45B95900A1D93E /* NotesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61913D6B1D45B95900A1D93E /* NotesTableViewController.m */; };
 		61CF1FB91D3FFFDD0074F152 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CF1FB81D3FFFDD0074F152 /* main.m */; };
 		61CF1FBC1D3FFFDD0074F152 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CF1FBB1D3FFFDD0074F152 /* AppDelegate.m */; };
 		61CF1FBF1D3FFFDD0074F152 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CF1FBE1D3FFFDD0074F152 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		10AF08B7BC7FDC0597243314 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		61913D6A1D45B95900A1D93E /* NotesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewController.h; sourceTree = "<group>"; };
+		61913D6B1D45B95900A1D93E /* NotesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewController.m; sourceTree = "<group>"; };
 		61CF1FB41D3FFFDD0074F152 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61CF1FB81D3FFFDD0074F152 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61CF1FBA1D3FFFDD0074F152 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,6 +117,17 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		61913D691D45481D00A1D93E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				61CF1FBD1D3FFFDD0074F152 /* ViewController.h */,
+				61CF1FBE1D3FFFDD0074F152 /* ViewController.m */,
+				61913D6A1D45B95900A1D93E /* NotesTableViewController.h */,
+				61913D6B1D45B95900A1D93E /* NotesTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		61CF1FAB1D3FFFDD0074F152 = {
 			isa = PBXGroup;
 			children = (
@@ -140,14 +154,13 @@
 			isa = PBXGroup;
 			children = (
 				61CF1FBA1D3FFFDD0074F152 /* AppDelegate.h */,
-				61913D641D4344E400A1D93E /* Model */,
 				61CF1FBB1D3FFFDD0074F152 /* AppDelegate.m */,
-				61CF1FBD1D3FFFDD0074F152 /* ViewController.h */,
-				61CF1FBE1D3FFFDD0074F152 /* ViewController.m */,
-				61CF1FC01D3FFFDD0074F152 /* Main.storyboard */,
-				61CF1FC31D3FFFDD0074F152 /* Assets.xcassets */,
-				61CF1FC51D3FFFDD0074F152 /* LaunchScreen.storyboard */,
 				61CF1FC81D3FFFDD0074F152 /* Info.plist */,
+				61CF1FC31D3FFFDD0074F152 /* Assets.xcassets */,
+				61913D691D45481D00A1D93E /* Controller */,
+				61CF1FC51D3FFFDD0074F152 /* LaunchScreen.storyboard */,
+				61CF1FC01D3FFFDD0074F152 /* Main.storyboard */,
+				61913D641D4344E400A1D93E /* Model */,
 				61CF1FB71D3FFFDD0074F152 /* Supporting Files */,
 			);
 			path = Notes;
@@ -372,6 +385,7 @@
 				61CF1FBF1D3FFFDD0074F152 /* ViewController.m in Sources */,
 				61CF1FBC1D3FFFDD0074F152 /* AppDelegate.m in Sources */,
 				61DBA9E31D4139BE0020E78A /* Notes.m in Sources */,
+				61913D6C1D45B95900A1D93E /* NotesTableViewController.m in Sources */,
 				61CF1FB91D3FFFDD0074F152 /* main.m in Sources */,
 				61DBA9DD1D4080A00020E78A /* Model.m in Sources */,
 			);
