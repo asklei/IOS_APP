@@ -10,6 +10,7 @@
 #import "Notes.h"
 #import "Model.h"
 #import "Note.h"
+#import "NoteTableViewCell.h"
 
 @interface NotesTableViewController ()
 @property(nonatomic, weak) Notes *notes;
@@ -21,7 +22,7 @@
     [super viewDidLoad];
     
     self.notes = [[Model sharedModel] notes];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"note"];
+    [self.tableView registerClass:[NoteTableViewCell class] forCellReuseIdentifier:@"note"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,11 +48,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"note" forIndexPath:indexPath];
+    NoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"note" forIndexPath:indexPath];
     
     // Configure the cell...
     Note *note = [self.notes getNoteAtIndex:indexPath.row];
     cell.textLabel.text = note.title;
+    cell.detailTextLabel.text = note.detail;
     
     return cell;
 }
