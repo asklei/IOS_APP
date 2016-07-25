@@ -42,9 +42,11 @@
     [super viewWillAppear:animated];
     if (self.noteToAdd && ![self.noteToAdd isBlank]) {
         [[Model sharedModel].notes addNote:self.noteToAdd];
+        [Model sharedModel].isChanged = true;
+        [[Model sharedModel] saveNotes];
+        
     }
     self.noteToAdd = nil;
-    [[Model sharedModel] saveNotes];
     [self.tableView reloadData];
 }
 
@@ -97,6 +99,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[[Model sharedModel] notes] deleteNoteAtIndex:indexPath.row];
+        [Model sharedModel].isChanged = true;
         [[Model sharedModel] saveNotes];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -106,6 +109,7 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     [[[Model sharedModel] notes] moveFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
+    [Model sharedModel].isChanged = true;
     [[Model sharedModel] saveNotes];
 }
 

@@ -36,9 +36,14 @@
 
 -(void)saveNotes {
     [NSKeyedArchiver archiveRootObject:self.notes.notes toFile:[self filePath]];
+    if (self.isChanged) {
+        NSLog(@"Saving");
+        self.isChanged = false;
+    }
 }
 
 -(NSArray *)loadNotes {
+    self.isChanged = false;
     NSArray *notesArray = [NSKeyedUnarchiver unarchiveObjectWithFile:[self filePath]];
     if (!notesArray) {
         notesArray = @[];

@@ -11,6 +11,7 @@
 
 @interface Model : NSObject
 @property(nonatomic, copy) Notes *notes;
+@property(nonatomic) BOOL isChanged;
 + (Model *)sharedModel;
 -(void)saveNotes;
 @end
