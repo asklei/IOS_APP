@@ -44,7 +44,6 @@
         [[Model sharedModel].notes addNote:self.noteToAdd];
         [Model sharedModel].isChanged = true;
         [[Model sharedModel] saveNotes];
-        
     }
     self.noteToAdd = nil;
     [self.tableView reloadData];
