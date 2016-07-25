@@ -15,7 +15,6 @@
 @property(nonatomic, weak) UILabel *titleLabel;
 @property(nonatomic, weak) UITextField *titleText;
 @property(nonatomic, weak) UITextView *contentText;
-@property(nonatomic, weak) UIButton *saveButton;
 @property(nonatomic, weak) Note *note;
 @end
 
@@ -31,21 +30,14 @@
     UILabel *titleLabel = [UILabel new];
     UITextField *titleText = [UITextField new];
     UITextView *contentText = [UITextView new];
-    UIButton *saveButton = [UIButton new];
     
     self.titleLabel = titleLabel;
     self.titleText = titleText;
-    self.saveButton = saveButton;
     self.contentText = contentText;
     
     titleLabel.text = @"Title:";
     titleLabel.textAlignment = NSTextAlignmentLeft;
-    [saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor colorWithRed:1.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor colorWithRed:1.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:0.5] forState:UIControlStateHighlighted];
-    [saveButton addTarget:self action:@selector(tappedSave:) forControlEvents:UIControlEventTouchUpInside];
     
-    saveButton.titleLabel.textAlignment = NSTextAlignmentLeft;
     titleText.layer.borderWidth = 1.0f;
     titleText.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] CGColor];
     contentText.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] CGColor];
@@ -55,8 +47,8 @@
     
     [self.view addSubview:titleLabel];
     [self.view addSubview:titleText];
-    [self.view addSubview:saveButton];
     [self.view addSubview:contentText];
+    self.navigationItem.rightBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(tappedSave:)];
     
     int spaceH = 10;
     int spaceV = 30;
@@ -65,27 +57,21 @@
         make.top.equalTo(self.view.mas_top).offset(spaceV);
         make.leading.equalTo(self.view.mas_leading).offset(spaceH);
     }];
-    [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(titleLabel.mas_top);
-        make.height.equalTo(titleLabel.mas_height);
-        make.trailing.equalTo(self.view.mas_trailing).offset(-spaceH);
-    }];
     [titleText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(titleLabel.mas_centerY);
         make.leading.equalTo(titleLabel.mas_trailing).offset(spaceH);
-        make.trailing.equalTo(saveButton.mas_leading).offset(-spaceH);
+        make.trailing.equalTo(contentText.mas_trailing).offset(-spaceH);
         make.width.greaterThanOrEqualTo(@10);
     }];
     [contentText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleText.mas_bottom).offset(spaceV);
         make.leading.equalTo(self.titleLabel.mas_leading);
-        make.trailing.equalTo(self.saveButton.mas_trailing);
+        make.trailing.equalTo(self.view.mas_trailing).offset(-spaceH);
         make.bottom.equalTo(self.view.mas_bottom).offset(-spaceV);
     }];
     
     [titleLabel sizeToFit];
     [titleText sizeToFit];
-    [saveButton sizeToFit];
     [contentText sizeToFit];
     
     if (self.note) {
