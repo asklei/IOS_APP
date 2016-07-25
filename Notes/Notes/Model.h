@@ -12,6 +12,5 @@
 @interface Model : NSObject
 @property(nonatomic, copy) Notes *notes;
 + (Model *)sharedModel;
-//-(void)saveNote:(Note *)note;
-//-(Note *)loadNote;
+-(void)saveNotes;
 @end
